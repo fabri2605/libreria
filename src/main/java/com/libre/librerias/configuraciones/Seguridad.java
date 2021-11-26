@@ -22,8 +22,8 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
                 .loginPage("/login") // Que formulario esta mi login
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("username") // Como viajan losdatos del logueo
-                .passwordParameter("password")// Como viajan losdatos del logueo
-                .defaultSuccessUrl("/inicio") // A que URL viaja
+                .passwordParameter("password") // Como viajan losdatos del logueo
+                .defaultSuccessUrl("/inicio")  // A que URL viaja
                 .permitAll()
                 .and().logout() // Aca configuro la salida
                 .logoutUrl("/logout")

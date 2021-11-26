@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Biblioteca</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="estilos.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background-image: url(/bkgr.jpg)">
+
+        <nav th:replace="index :: navbar" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+        </nav>
+
+        <div class="card border-dark mb-3" style="margin: 40px; width: 50%">
+            <div class="card-header">Perfil (<span th:text="${user.rol}"></span>)</div>
+            <div style="display: table; border-spacing: 20px; padding: 0" class="card-body text-dark">
+                <div style="display: table-cell">
+                    <h5 class="card-title">Nombre</h5>
+                    <p class="card-text" th:text="${#strings.toUpperCase(user.name)}"></p>
+                    <h5 class="card-title">Apellido</h5>
+                    <p class="card-text" th:text="${#strings.toUpperCase(user.surname)}"></p>
+                </div>
+                <div style="display: table-cell">
+                    <h5 class="card-title">Email</h5>
+                    <p class="card-text" th:text="${user.email}"></p>
+                    <h5 class="card-title">Id</h5>
+                    <p class="card-text" th:text="${user.id}"></p>
+                </div>
+                <a class="btn btn-primary" th:href="@{/modificar/__${id}__}">Modificar</a><br>
+                <a style="margin-top: 10px" class="btn btn-primary" th:href="@{/}">Menu</a>
+            </div>
+        </div>
+
+
+        <div th:replace="index :: js"></div>
+    </body>
+</html>
