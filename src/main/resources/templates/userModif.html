@@ -10,7 +10,28 @@
     </head>
     <body style="background-image: url(/bkgr.jpg)">
 
-        <nav th:replace="index :: navbar" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+         <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Biblioteca</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/libro/listar">Libros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/autor/listaAutores">Autores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/editorial/listaEditoriales">Editoriales</a>
+                    </li>
+                </ul>
+
+            </div>
         </nav>
 
 
@@ -21,7 +42,7 @@
                 <div style="display: table-row; border-spacing: 20px 5px; padding: 0;" class="card-body text-dark">
                     <div style="display: table-cell;">
                         <h5 class="card-title">Nombre</h5>
-                        <input autocomplete="new-text" name="name" class="card-text" th:placeholder="${#strings.toUpperCase(user.name)}"></input>
+                        <input th:value="${#strings.toUpperCase(user.name)}" name="name" class="card-text" th:placeholder="nombre"></input>
                         <h1></h1>
                         <h5 class="card-title">Contraseña</h5>
                         <input autocomplete="new-text" type="password" name="contra" class="card-text"></input>
@@ -31,7 +52,7 @@
                     </div>
                     <div style="display: table-cell">
                         <h5 class="card-title">Apellido</h5>
-                        <input name="surname" class="card-text" th:placeholder="${#strings.toUpperCase(user.surname)}"></input>
+                        <input th:value="${#strings.toUpperCase(user.surname)}" name="surname" class="card-text" th:placeholder="apellido"></input>
                         <h1></h1>
                         <h5 class="card-title">Nueva contraseña</h5>
                         <input name="contranew" type="password" class="card-text"></input>
@@ -48,10 +69,10 @@
         </form>
 
         <div th:if="${error}!=null">
-            <p th:text="${error}"></p>
+            <p style="color: white" th:text="${error}"></p>
         </div>
         <div th:if="${exito}!=null">
-            <p th:text="${exito}"></p>
+            <p style="color: white" th:text="${exito}"></p>
         </div>
         
         
