@@ -34,7 +34,7 @@
                 <a th:if="${session.usuariosession}==null" style="margin-left: 64%" class="btn btn-outline-light" th:href="@{/login}">Login</a>
                 <a th:if="${session.usuariosession}==null" style="margin-left: 1%" class="btn btn-outline-info" th:href="@{/register}">Register</a>
 
-                <div style="margin-left: 72%" th:if="${session.usuariosession}!=null" class="btn-group dropleft">
+                <div style="align-items: flex-end; margin-left: 50.5em" th:if="${session.usuariosession}!=null" class="btn-group dropleft">
                     <button th:text="${session.usuariosession.name}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     </button>
                     <div class="dropdown-menu">

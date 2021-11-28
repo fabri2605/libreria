@@ -10,28 +10,48 @@
     </head>
     <body>
 
-        <nav th:replace="index :: navbar" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Biblioteca</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/libro/listar">Libros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/autor/listaAutores">Autores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/editorial/listaEditoriales">Editoriales</a>
+                    </li>
+                </ul>
 
+            </div>
         </nav>
 
-        <form th:action="@{/register}" method="post" style="color: white; margin: 50px; border-radius: 10px; width: 50%" class="bg-light p-2 text-light bg-opacity-50">
-            <div class="form-group">
+        <form th:action="@{/register}" method="post" style="margin: 50px; border-radius: 10px; width: 50%" class="bg-light p-2 text-light bg-opacity-50">
+            <div style="color: black" class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input name="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+            <div style="color: black" class="form-group">
+                <label for="exampleInputEmail1">Nombre</label>
                 <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Surname</label>
+            <div style="color: black" class="form-group">
+                <label for="exampleInputEmail1">Apellido</label>
                 <input name="surname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+            <div style="color: black" class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
                 <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <div class="form-check">
+            <div style="color: black" class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                 <label class="form-check-label" for="exampleCheck1">Acepto terminos y condiiciones</label>
             </div>

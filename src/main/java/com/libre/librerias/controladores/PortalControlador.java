@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
-    
+
     @Autowired
     UserSer userS;
 
@@ -23,7 +23,7 @@ public class PortalControlador {
     public String index() {
         return "index.html";
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @GetMapping("/inicio")
     public String ini() {
@@ -45,7 +45,7 @@ public class PortalControlador {
     public String registrar() {
         return "register.html";
     }
-    
+
     @GetMapping("/perfil/{id}")
     public String perfil(@PathVariable String id, ModelMap modelo) throws Exception {
         AppUser u = userS.buscarPorId(id);
@@ -63,20 +63,23 @@ public class PortalControlador {
             return "register.html";
         }
     }
-    
+
     @GetMapping("/modificar/{id}")
     public String modificar(ModelMap modelo, @PathVariable String id) throws Exception {
         modelo.put("user", userS.buscarPorId(id));
         return "userModif";
     }
-    
+
     @PostMapping("/modificar/{id}")
     public String modif(ModelMap modelo, @RequestParam String name, @PathVariable String id, @RequestParam String surname, @RequestParam String contra, @RequestParam String contranew) throws Exception {
         try {
             userS.modif(id, name, surname, contra, contranew);
+            AppUser u = userS.buscarPorId(id);
+            modelo.addAttribute("user", u);
             modelo.addAttribute("exito", "Usuario modificado correctamente");
             return "userModif";
-        }catch(Exception e){
+        } catch (Exception e) {
+            modelo.put("user", userS.buscarPorId(id));
             modelo.addAttribute("error", e.getMessage());
             return "userModif";
         }
