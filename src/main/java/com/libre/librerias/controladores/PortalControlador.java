@@ -2,6 +2,7 @@ package com.libre.librerias.controladores;
 
 import com.libre.librerias.entidades.AppUser;
 import com.libre.librerias.servicios.UserSer;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -71,10 +72,11 @@ public class PortalControlador {
     }
 
     @PostMapping("/modificar/{id}")
-    public String modif(ModelMap modelo, @RequestParam String name, @PathVariable String id, @RequestParam String surname, @RequestParam String contra, @RequestParam String contranew) throws Exception {
+    public String modif(HttpSession session, ModelMap modelo, @RequestParam String name, @PathVariable String id, @RequestParam String surname, @RequestParam String contra, @RequestParam String contranew) throws Exception {
         try {
             userS.modif(id, name, surname, contra, contranew);
             AppUser u = userS.buscarPorId(id);
+            session.setAttribute("usuariosession", u);
             modelo.addAttribute("user", u);
             modelo.addAttribute("exito", "Usuario modificado correctamente");
             return "userModif";
