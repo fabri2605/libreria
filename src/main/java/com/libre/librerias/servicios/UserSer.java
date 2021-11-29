@@ -70,9 +70,15 @@ public class UserSer implements UserDetailsService {
     }
 
     public void modif(String id, String name, String surname, String contra, String contranew) throws Exception {
-        validar("..", name, surname, contranew);
+        validar("..", name, surname, contra);
         if (contra == null || contra.isEmpty()) {
             throw new Exception("Contraseña invalida!");
+        }
+        if (contranew.length()<5 && contranew.length()!=0) {
+            throw new Exception("La contraseña debe tener un minimo de 6 caracteres!");
+        }
+        if (contranew.length()==0) {
+            contranew = contra;
         }
         List<AppUser> users = listarUsers();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -108,7 +114,7 @@ public class UserSer implements UserDetailsService {
             throw new Exception("Apellido Invalido!");
         }
         if (password == null || password.isEmpty()) {
-            throw new Exception("Contraseña invalida!");
+            throw new Exception("Ingrese la contraseña!");
         }
     }
 
@@ -125,7 +131,7 @@ public class UserSer implements UserDetailsService {
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario);
-            session.setMaxInactiveInterval(300);
+            session.setMaxInactiveInterval(30000000);
             session.setAttribute("timeOutTimeInSeconds", 300);
             session.setAttribute("showTimerTimeInSeconds", 30);
 
